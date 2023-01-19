@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MailTemplate</title>
+    <base target="_blank" />
+    <style type="text/css">
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+    <style id="cloudAttachStyle" type="text/css">
+        #divNeteaseBigAttach,
+        #divNeteaseBigAttach_bak {
+            display: none;
+        }
+    </style>
+    <style id="blockquoteStyle" type="text/css">
+        blockquote {
+            display: none;
+        }
+    </style>
+</head>
+
+<body tabindex="0">
+
+
+    <div id="content" class="netease_mail_readhtml netease_mail_readhtml_webmail">
+
+
+        <div style="background: #eee">
+            <table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div style="background:#fff">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <thead>
+                                        <tr>
+                                            <td valign="middle"
+                                                style="padding-left:30px;background-color:#$COLOR;color:#fff;padding:20px 40px;font-size: 21px;">
+                                                $DISPLAYHEADERINFO</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr style="padding:40px 40px 0 40px;display:table-cell">
+                                            <td style="font-size:24px;line-height:1.5;color:#000;margin-top:40px">
+                                                $DISPLAYSUBJECT
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size:14px;color:#333;padding:24px 40px 0 40px">
+                                                $CONTEXT
+                                            </td>
+                                        </tr>
+                                        <tr style="padding:40px;display:table-cell">
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div>
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                        <tr>
+                                            <td
+                                                style="padding:20px 40px;font-size:12px;color:#999;line-height:20px;background:#f7f7f7">
+                                                <p style="font-size:14px;color:#929292;text-align: center;">$DISPLAYFOOTERINFO</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div style="clear:both;height:1px;"></div>
+    </div>
+    <style type="text/css">
+        * {
+            white-space: normal !important;
+            word-break: break-word !important;
+        }
+
+        body {
+            font-size: 14px;
+            font-family: arial, verdana, sans-serif;
+            line-height: 1.666;
+            padding: 0;
+            margin: 0;
+            overflow: auto;
+            white-space: normal;
+            word-wrap: break-word;
+            min-height: 100px
+        }
+
+        td,
+        input,
+        button,
+        select,
+        body {
+            font-family: Helvetica, 'Microsoft Yahei', verdana
+        }
+
+        pre {
+            white-space: pre-wrap !important;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+            width: 95%
+        }
+
+        th,
+        td {
+            font-family: arial, verdana, sans-serif;
+            line-height: 1.666
+        }
+
+        img {
+            border: 0
+        }
+
+        header,
+        footer,
+        section,
+        aside,
+        article,
+        nav,
+        hgroup,
+        figure,
+        figcaption {
+            display: block
+        }
+
+        blockquote {
+            margin-right: 0px
+        }
+    </style>
+
+
+    <style id="ntes_link_color" type="text/css">
+        a,
+        td a {
+            color: #064977
+        }
+    </style>
+
+</body>
+
+</html>

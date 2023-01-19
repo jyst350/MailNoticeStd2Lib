@@ -1,0 +1,183 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MailNoticeStd2Lib</name>
+    </assembly>
+    <members>
+        <member name="T:MailNoticeStd2Lib.MailConfig">
+            <summary>
+            邮件参数配置类。
+            </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.MailConfig.MailSender">
+            <summary>
+            邮件发送者。
+            </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.MailConfig.MailSenderPassword">
+            <summary>
+            密码。
+            </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.MailConfig.MailReceivers">
+            <summary>
+            邮件接收者列表。
+            </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.MailConfig.SmtpServerHost">
+            <summary>
+            SMTP服务器地址。
+            </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.MailConfig.SmtpServerPort">
+            <summary>
+            SMTP服务器端口。
+            <para>默认使用587端口。</para>
+            </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.MailConfig.SecurityConnection">
+            <summary>
+            是否指示使用SSL/TLS进行安全连接。
+            <para>默认为True。</para>
+            </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.MailConfig.DisplayName">
+            <summary>
+            发信人显示名称。
+            <para>默认显示为:MailNotice。</para>
+            </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.MailConfig.DisplayHeaderInfo">
+            <summary>
+            邮件正文的页头信息。
+            <para>默认显示为:MailNotice。</para>
+            </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.MailConfig.DisplayFooterInfo">
+            <summary>
+            邮件正文的页脚信息。
+            <para>默认显示为:Powered by MailNotice。</para>
+            </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.MailConfig.MailEncoding">
+             <summary>
+            邮件所有上下文的编码格式。
+            <para>默认显示为:UTF8。</para>
+             </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.MailConfig.EmailTemplateFile">
+            <summary>
+            邮件模板文件(如未指定,将使用内置模板)。
+            </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.MailConfig.TitleColor">
+            <summary>
+            标题背景颜色(16进制)。
+            <para>默认为:4994CE。</para>
+            </summary>
+        </member>
+        <member name="T:MailNoticeStd2Lib.MailNotice">
+            <summary>
+            邮件通知类。
+            </summary>
+        </member>
+        <member name="E:MailNoticeStd2Lib.MailNotice.SendSuccessed">
+            <summary>
+            当发送成功后引发的事件。
+            </summary>
+        </member>
+        <member name="E:MailNoticeStd2Lib.MailNotice.SendFailure">
+            <summary>
+            当发送失败后引发的事件。
+            </summary>
+        </member>
+        <member name="M:MailNoticeStd2Lib.MailNotice.#ctor(MailNoticeStd2Lib.MailConfig)">
+            <summary>
+            初始化一个 <see cref="T:MailNoticeStd2Lib.MailNotice"/> 邮件通知新实例。
+            </summary>
+            <param name="mailConfig">邮件参数配置文件。</param>
+        </member>
+        <member name="M:MailNoticeStd2Lib.MailNotice.Send(System.String,System.String)">
+            <summary>
+            发送邮件。
+            </summary>
+            <param name="title">邮件标题</param>
+            <param name="context">邮件正文</param>
+        </member>
+        <member name="M:MailNoticeStd2Lib.MailNotice.SendAsync(System.String,System.String)">
+            <summary>
+            异步发送邮件。
+            </summary>
+            <param name="title">邮件标题</param>
+            <param name="context">邮件正文</param>
+        </member>
+        <member name="M:MailNoticeStd2Lib.MailNotice.Dispose">
+            <summary>
+            释放 <see cref="T:MailNoticeStd2Lib.MailNotice"/> 对象。
+            </summary>
+        </member>
+        <member name="T:MailNoticeStd2Lib.MailNoticeEventArgs">
+            <summary>
+            为 <see cref="T:MailNoticeStd2Lib.MailNotice"/> 提供事件数据的方法。
+            </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.MailNoticeEventArgs.SendResult">
+            <summary>
+            发送结果。
+            </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.MailNoticeEventArgs.Title">
+            <summary>
+            邮件标题。
+            </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.MailNoticeEventArgs.Context">
+            <summary>
+            邮件正文。
+            </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.MailNoticeEventArgs.SendDate">
+            <summary>
+            发送日期/时间。
+            </summary>
+        </member>
+        <member name="T:MailNoticeStd2Lib.Resource">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.Resource.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.Resource.Culture">
+            <summary>
+              重写当前线程的 CurrentUICulture 属性，对
+              使用此强类型资源类的所有资源查找执行重写。
+            </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.Resource.EmailTemplate">
+             <summary>
+               查找类似 &lt;!DOCTYPE html&gt;
+            &lt;html lang=&quot;zh-cn&quot;&gt;
+            
+            &lt;head&gt;
+                &lt;meta charset=&quot;UTF-8&quot;&gt;
+                &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+                &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+                &lt;title&gt;MailTemplate&lt;/title&gt;
+                &lt;base target=&quot;_blank&quot; /&gt;
+                &lt;style type=&quot;text/css&quot;&gt;
+                    ::-webkit-scrollbar {
+                        display: none;
+                    }
+                &lt;/style&gt;
+                &lt;style id=&quot;cloudAttachStyle&quot; type=&quot;text/css&quot;&gt;
+                    #divNeteaseBigAttach,
+                    #divNeteaseBigAttach_bak {
+                    [字符串的其余部分被截断]&quot;; 的本地化字符串。
+             </summary>
+        </member>
+    </members>
+</doc>
