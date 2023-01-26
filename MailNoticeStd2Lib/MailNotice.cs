@@ -26,6 +26,7 @@ namespace MailNoticeStd2Lib
         private SmtpClient PrivateSmtpClient;
         private readonly MailConfig PrivateMailConfig;
 
+  
         /// <summary>
         /// 初始化一个 <see cref="MailNotice"/> 邮件通知新实例。
         /// </summary>
@@ -54,6 +55,13 @@ namespace MailNoticeStd2Lib
                 PrivateMailMessage.BodyEncoding = PrivateMailConfig.MailEncoding;
                 PrivateMailMessage.HeadersEncoding = PrivateMailConfig.MailEncoding;
                 PrivateMailMessage.SubjectEncoding = PrivateMailConfig.MailEncoding;
+                if (PrivateMailConfig.AttachmentFileList != null)
+                {
+                    for (int i = 0; i < PrivateMailConfig.AttachmentFileList.Length; i++)
+                    {
+                        PrivateMailMessage.Attachments.Add(new Attachment(PrivateMailConfig.AttachmentFileList[i]));
+                    }
+                }
                 if (PrivateMailConfig.MailReceivers != null)
                 {
                     for (int i = 0; i < PrivateMailConfig.MailReceivers.Length; i++)
@@ -101,6 +109,14 @@ namespace MailNoticeStd2Lib
                 PrivateMailMessage.BodyEncoding = PrivateMailConfig.MailEncoding;
                 PrivateMailMessage.HeadersEncoding = PrivateMailConfig.MailEncoding;
                 PrivateMailMessage.SubjectEncoding = PrivateMailConfig.MailEncoding;
+                if(PrivateMailConfig.AttachmentFileList !=null)
+                {
+                    for (int i = 0; i < PrivateMailConfig.AttachmentFileList.Length; i++)
+                    {
+                        PrivateMailMessage.Attachments.Add(new Attachment(PrivateMailConfig.AttachmentFileList[i]));
+                    }
+                }
+                
                 if (PrivateMailConfig.MailReceivers != null)
                 {
                     for (int i = 0; i < PrivateMailConfig.MailReceivers.Length; i++)

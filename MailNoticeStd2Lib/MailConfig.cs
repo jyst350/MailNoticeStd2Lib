@@ -85,5 +85,10 @@ namespace MailNoticeStd2Lib
         /// <para>默认为:4994CE。</para>
         /// </summary>
         public string TitleColor { get; set; } = "4994CE";
+
+        /// <summary>
+        /// 附件文件列表。
+        /// </summary>
+        public string[] AttachmentFileList { get; set; }
     }
 }
