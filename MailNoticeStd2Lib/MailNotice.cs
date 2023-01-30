@@ -26,7 +26,6 @@ namespace MailNoticeStd2Lib
         private SmtpClient PrivateSmtpClient;
         private readonly MailConfig PrivateMailConfig;
 
-  
         /// <summary>
         /// 初始化一个 <see cref="MailNotice"/> 邮件通知新实例。
         /// </summary>
@@ -82,11 +81,11 @@ namespace MailNoticeStd2Lib
                     Credentials = new NetworkCredential(PrivateMailConfig.MailSender, PrivateMailConfig.MailSenderPassword)
                 };
                 PrivateSmtpClient.Send(PrivateMailMessage);
-                SendSuccessed?.Invoke(this, new MailNoticeEventArgs { SendResult = "邮件发送成功。", Title = PrivateMailConfig.DisplayHeaderInfo, Context = PrivateMailMessage.Body, SendDate = DateTime.UtcNow.AddHours(8) });
+                SendSuccessed?.Invoke(this, new MailNoticeEventArgs { Result = true });
             }
             catch (Exception ex)
             {
-                SendFailure?.Invoke(this, new MailNoticeEventArgs { SendResult = ex.Message });
+                SendFailure?.Invoke(this, new MailNoticeEventArgs { Result = false, Message = ex.Message });
             }
         }
 
@@ -109,14 +108,14 @@ namespace MailNoticeStd2Lib
                 PrivateMailMessage.BodyEncoding = PrivateMailConfig.MailEncoding;
                 PrivateMailMessage.HeadersEncoding = PrivateMailConfig.MailEncoding;
                 PrivateMailMessage.SubjectEncoding = PrivateMailConfig.MailEncoding;
-                if(PrivateMailConfig.AttachmentFileList !=null)
+                if (PrivateMailConfig.AttachmentFileList != null)
                 {
                     for (int i = 0; i < PrivateMailConfig.AttachmentFileList.Length; i++)
                     {
                         PrivateMailMessage.Attachments.Add(new Attachment(PrivateMailConfig.AttachmentFileList[i]));
                     }
                 }
-                
+
                 if (PrivateMailConfig.MailReceivers != null)
                 {
                     for (int i = 0; i < PrivateMailConfig.MailReceivers.Length; i++)
@@ -137,11 +136,11 @@ namespace MailNoticeStd2Lib
                     Credentials = new NetworkCredential(PrivateMailConfig.MailSender, PrivateMailConfig.MailSenderPassword)
                 };
                 await PrivateSmtpClient.SendMailAsync(PrivateMailMessage);
-                SendSuccessed?.Invoke(this, new MailNoticeEventArgs { SendResult = "邮件发送成功。", Title = PrivateMailConfig.DisplayHeaderInfo, Context = PrivateMailMessage.Body, SendDate = DateTime.UtcNow.AddHours(8) });
+                SendSuccessed?.Invoke(this, new MailNoticeEventArgs { Result = true });
             }
             catch (Exception ex)
             {
-                SendFailure?.Invoke(this, new MailNoticeEventArgs { SendResult = ex.Message });
+                SendFailure?.Invoke(this, new MailNoticeEventArgs { Result = false, Message = ex.Message });
             }
         }
 

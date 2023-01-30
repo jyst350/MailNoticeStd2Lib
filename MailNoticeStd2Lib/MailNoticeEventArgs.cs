@@ -10,21 +10,11 @@ namespace MailNoticeStd2Lib
         /// <summary>
         /// 发送结果。
         /// </summary>
-        public object SendResult { get; set; }
+        public bool Result { get; set; }
 
         /// <summary>
-        /// 邮件标题。
+        /// 信息。
         /// </summary>
-        public object Title { get; set; }
-
-        /// <summary>
-        /// 邮件正文。
-        /// </summary>
-        public object Context { get; set; }
-
-        /// <summary>
-        /// 发送日期/时间。
-        /// </summary>
-        public object SendDate { get; set; }
+        public string Message { get; set; }
     }
 }
