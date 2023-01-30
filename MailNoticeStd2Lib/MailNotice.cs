@@ -15,12 +15,12 @@ namespace MailNoticeStd2Lib
         /// <summary>
         /// 当发送成功后引发的事件。
         /// </summary>
-        public event EventHandler<MailNoticeEventArgs> SendSuccessed;
+        public event EventHandler<MailNoticeEventArgs> OnSucceed;
 
         /// <summary>
-        /// 当发送失败后引发的事件。
+        /// 当发送出现故障后引发的事件。
         /// </summary>
-        public event EventHandler<MailNoticeEventArgs> SendFailure;
+        public event EventHandler<MailNoticeEventArgs> OnFailured;
 
         private MailMessage PrivateMailMessage;
         private SmtpClient PrivateSmtpClient;
@@ -43,6 +43,7 @@ namespace MailNoticeStd2Lib
         public void Send(string title, string context)
         {
             string strbody = ReplaceText(PrivateMailConfig.DisplayHeaderInfo, title, context.Replace("\r\n", "<br>"), PrivateMailConfig.DisplayFooterInfo);
+
             try
             {
                 PrivateMailMessage = new MailMessage
@@ -54,6 +55,7 @@ namespace MailNoticeStd2Lib
                 PrivateMailMessage.BodyEncoding = PrivateMailConfig.MailEncoding;
                 PrivateMailMessage.HeadersEncoding = PrivateMailConfig.MailEncoding;
                 PrivateMailMessage.SubjectEncoding = PrivateMailConfig.MailEncoding;
+                PrivateMailMessage.BodyTransferEncoding = System.Net.Mime.TransferEncoding.Base64;
                 if (PrivateMailConfig.AttachmentFileList != null)
                 {
                     for (int i = 0; i < PrivateMailConfig.AttachmentFileList.Length; i++)
@@ -68,24 +70,28 @@ namespace MailNoticeStd2Lib
                         PrivateMailMessage.To.Add(PrivateMailConfig.MailReceivers[i]);
                     }
                 }
-
+                PrivateMailMessage.Priority = PrivateMailConfig.Priority;
                 PrivateMailMessage.Subject = title;
                 PrivateMailMessage.Body = $"{strbody}";
-                ServicePointManager.ServerCertificateValidationCallback = delegate (object obj, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors) { return true; };
+                ServicePointManager.ServerCertificateValidationCallback = (j, i, a, n) => true;
 
                 PrivateSmtpClient = new SmtpClient
                 {
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    Timeout = 60000,
                     Host = PrivateMailConfig.SmtpServerHost,
                     Port = PrivateMailConfig.SmtpServerPort,
                     EnableSsl = PrivateMailConfig.SecurityConnection,
-                    Credentials = new NetworkCredential(PrivateMailConfig.MailSender, PrivateMailConfig.MailSenderPassword)
+                   
                 };
+                PrivateSmtpClient.UseDefaultCredentials = PrivateMailConfig.IsUseDefaultCredentials;
+                PrivateSmtpClient.Credentials = new NetworkCredential(PrivateMailConfig.MailSender, PrivateMailConfig.MailSenderPassword);
                 PrivateSmtpClient.Send(PrivateMailMessage);
-                SendSuccessed?.Invoke(this, new MailNoticeEventArgs { Result = true });
+                OnSucceed?.Invoke(this, new MailNoticeEventArgs { Result = "发送成功" });
             }
-            catch (Exception ex)
+            catch (SmtpException ex)
             {
-                SendFailure?.Invoke(this, new MailNoticeEventArgs { Result = false, Message = ex.Message });
+                OnFailured?.Invoke(this, new MailNoticeEventArgs { Result = ex.Message });
             }
         }
 
@@ -108,6 +114,7 @@ namespace MailNoticeStd2Lib
                 PrivateMailMessage.BodyEncoding = PrivateMailConfig.MailEncoding;
                 PrivateMailMessage.HeadersEncoding = PrivateMailConfig.MailEncoding;
                 PrivateMailMessage.SubjectEncoding = PrivateMailConfig.MailEncoding;
+                PrivateMailMessage.BodyTransferEncoding = System.Net.Mime.TransferEncoding.Base64;
                 if (PrivateMailConfig.AttachmentFileList != null)
                 {
                     for (int i = 0; i < PrivateMailConfig.AttachmentFileList.Length; i++)
@@ -115,7 +122,6 @@ namespace MailNoticeStd2Lib
                         PrivateMailMessage.Attachments.Add(new Attachment(PrivateMailConfig.AttachmentFileList[i]));
                     }
                 }
-
                 if (PrivateMailConfig.MailReceivers != null)
                 {
                     for (int i = 0; i < PrivateMailConfig.MailReceivers.Length; i++)
@@ -123,24 +129,37 @@ namespace MailNoticeStd2Lib
                         PrivateMailMessage.To.Add(PrivateMailConfig.MailReceivers[i]);
                     }
                 }
-
+                PrivateMailMessage.Priority = PrivateMailConfig.Priority;
                 PrivateMailMessage.Subject = title;
                 PrivateMailMessage.Body = $"{strbody}";
-                ServicePointManager.ServerCertificateValidationCallback = delegate (object obj, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors) { return true; };
-
+                ServicePointManager.ServerCertificateValidationCallback = (j, i, a, n) => true;
                 PrivateSmtpClient = new SmtpClient
                 {
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    Timeout = 60000,
                     Host = PrivateMailConfig.SmtpServerHost,
                     Port = PrivateMailConfig.SmtpServerPort,
                     EnableSsl = PrivateMailConfig.SecurityConnection,
+                    UseDefaultCredentials = PrivateMailConfig.IsUseDefaultCredentials,
                     Credentials = new NetworkCredential(PrivateMailConfig.MailSender, PrivateMailConfig.MailSenderPassword)
                 };
-                await PrivateSmtpClient.SendMailAsync(PrivateMailMessage);
-                SendSuccessed?.Invoke(this, new MailNoticeEventArgs { Result = true });
+
+                if (PrivateMailConfig.VerifyCredentials)
+                {
+                    
+                   
+
+                    await PrivateSmtpClient.SendMailAsync(PrivateMailMessage);
+                    OnSucceed?.Invoke(this, new MailNoticeEventArgs { Result = "通知邮件已发送" });
+                }
+                else
+                {
+                    OnFailured?.Invoke(this, new MailNoticeEventArgs { Result = "验证失败" });
+                }
             }
-            catch (Exception ex)
+            catch (SmtpException ex)
             {
-                SendFailure?.Invoke(this, new MailNoticeEventArgs { Result = false, Message = ex.Message });
+                OnFailured?.Invoke(this, new MailNoticeEventArgs { Result = ex.Message });
             }
         }
 
