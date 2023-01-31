@@ -70,7 +70,7 @@ namespace MailNoticeStd2Lib
                         PrivateMailMessage.To.Add(PrivateMailConfig.MailReceivers[i]);
                     }
                 }
-                PrivateMailMessage.Priority = PrivateMailConfig.Priority;
+                PrivateMailMessage.Priority = (MailPriority)Enum.Parse(typeof(MailPriority), PrivateMailConfig.Priority);
                 PrivateMailMessage.Subject = title;
                 PrivateMailMessage.Body = $"{strbody}";
                 ServicePointManager.ServerCertificateValidationCallback = (j, i, a, n) => true;
@@ -129,7 +129,7 @@ namespace MailNoticeStd2Lib
                         PrivateMailMessage.To.Add(PrivateMailConfig.MailReceivers[i]);
                     }
                 }
-                PrivateMailMessage.Priority = PrivateMailConfig.Priority;
+                PrivateMailMessage.Priority = (MailPriority)Enum.Parse(typeof(MailPriority), PrivateMailConfig.Priority);
                 PrivateMailMessage.Subject = title;
                 PrivateMailMessage.Body = $"{strbody}";
                 ServicePointManager.ServerCertificateValidationCallback = (j, i, a, n) => true;

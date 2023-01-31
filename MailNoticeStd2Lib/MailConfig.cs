@@ -160,10 +160,10 @@ namespace MailNoticeStd2Lib
 
         /// <summary>
         /// 邮件优先级。
-        /// <para>默认为:正常。</para>
+        /// <para>默认为:高。</para>
         /// </summary>
-        [JsonIgnore]
-        public MailPriority Priority { get; set; } = MailPriority.Normal;
+        [JsonProperty]
+        public string Priority { get; set; } = "Normal";
 
         /// <summary>
         /// 是否随请求一起发送凭据。
