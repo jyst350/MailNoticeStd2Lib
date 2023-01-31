@@ -1,8 +1,6 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.ComponentModel;
 using System.IO;
-using System.Net.Mail;
 using System.Text;
 
 namespace MailNoticeStd2Lib
@@ -137,6 +135,14 @@ namespace MailNoticeStd2Lib
         [JsonProperty]
         [Category("邮件参数"), Description("标题背景颜色(16进制)。")]
         public string TitleColor { get; set; } = "4994CE";
+
+        /// <summary>
+        /// HTML模板标题。
+        /// <para>默认为:MailNotice。</para>
+        /// </summary>
+        [JsonProperty]
+        [Category("邮件参数"), Description("HTML模板标题。")]
+        public string MainTitle { get; set; } = "MailNotice";
 
         /// <summary>
         /// 附件文件列表。

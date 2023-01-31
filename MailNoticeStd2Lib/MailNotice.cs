@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Net;
 using System.Net.Mail;
-using System.Net.Security;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace MailNoticeStd2Lib
@@ -42,7 +40,7 @@ namespace MailNoticeStd2Lib
         /// <param name="context">邮件正文</param>
         public void Send(string title, string context)
         {
-            string strbody = ReplaceText(PrivateMailConfig.DisplayHeaderInfo, title, context.Replace("\r\n", "<br>"), PrivateMailConfig.DisplayFooterInfo);
+            string strbody = ReplaceText(PrivateMailConfig.MainTitle,PrivateMailConfig.DisplayHeaderInfo, title, context.Replace("\r\n", "<br>"), PrivateMailConfig.DisplayFooterInfo);
 
             try
             {
@@ -102,7 +100,7 @@ namespace MailNoticeStd2Lib
         /// <param name="context">邮件正文</param>
         public async Task SendAsync(string title, string context)
         {
-            string strbody = ReplaceText(PrivateMailConfig.DisplayHeaderInfo, title, context.Replace("\r\n", "<br>"), PrivateMailConfig.DisplayFooterInfo);
+            string strbody = ReplaceText(PrivateMailConfig.MainTitle, PrivateMailConfig.DisplayHeaderInfo, title, context.Replace("\r\n", "<br>"), PrivateMailConfig.DisplayFooterInfo);
             try
             {
                 PrivateMailMessage = new MailMessage
@@ -163,9 +161,10 @@ namespace MailNoticeStd2Lib
             }
         }
 
-        private string ReplaceText(string tag, string subject, string context, string footerinfo)
+        private string ReplaceText(string htmltitle,string tag, string subject, string context, string footerinfo)
         {
             string str = PrivateMailConfig.EmailTemplateFile;
+            str = str.Replace("$MAINTITLE", htmltitle);
             str = str.Replace("$DISPLAYHEADERINFO", tag);
             str = str.Replace("$DISPLAYSUBJECT", subject);
             str = str.Replace("$CONTEXT", context);
