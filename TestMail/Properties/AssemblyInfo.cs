@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("MailNoticeConsole")]
+[assembly: AssemblyTitle("TestMail")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MailNoticeConsole")]
+[assembly: AssemblyProduct("TestMail")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("1137b82f-2ba8-4bac-acb7-748e8a405b95")]
+[assembly: Guid("22c2c249-0d7a-41e7-ba3f-7c6be37af5e4")]
 
 // 程序集的版本信息由下列四个值组成:
 //

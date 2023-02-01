@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1137B82F-2BA8-4BAC-ACB7-748E8A405B95}</ProjectGuid>
+    <ProjectGuid>{22C2C249-0D7A-41E7-BA3F-7C6BE37AF5E4}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>MailNoticeConsole</RootNamespace>
-    <AssemblyName>MailNoticeConsole</AssemblyName>
+    <RootNamespace>TestMail</RootNamespace>
+    <AssemblyName>TestMail</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

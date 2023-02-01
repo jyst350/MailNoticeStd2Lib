@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Mail;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MailNoticeStd2Lib
@@ -43,13 +44,13 @@ namespace MailNoticeStd2Lib
             {
                 using (MailMessage PrivateMailMessage = new MailMessage
                 {
-                    From = new MailAddress(PrivateMailConfig.MailSender, PrivateMailConfig.DisplayName, PrivateMailConfig.MailEncoding)
+                    From = new MailAddress(PrivateMailConfig.MailSender, PrivateMailConfig.DisplayName, Encoding.GetEncoding(PrivateMailConfig.MailEncoding))
                 })
                 {
                     PrivateMailMessage.IsBodyHtml = true;
-                    PrivateMailMessage.BodyEncoding = PrivateMailConfig.MailEncoding;
-                    PrivateMailMessage.HeadersEncoding = PrivateMailConfig.MailEncoding;
-                    PrivateMailMessage.SubjectEncoding = PrivateMailConfig.MailEncoding;
+                    PrivateMailMessage.BodyEncoding = Encoding.GetEncoding(PrivateMailConfig.MailEncoding);
+                    PrivateMailMessage.HeadersEncoding = Encoding.GetEncoding(PrivateMailConfig.MailEncoding);
+                    PrivateMailMessage.SubjectEncoding = Encoding.GetEncoding(PrivateMailConfig.TitleEncoding);
                     PrivateMailMessage.BodyTransferEncoding = System.Net.Mime.TransferEncoding.Base64;
                     if (PrivateMailConfig.MailReceivers != null)
                     {
@@ -98,13 +99,13 @@ namespace MailNoticeStd2Lib
             {
                 using (MailMessage PrivateMailMessage = new MailMessage
                 {
-                    From = new MailAddress(PrivateMailConfig.MailSender, PrivateMailConfig.DisplayName, PrivateMailConfig.MailEncoding)
+                    From = new MailAddress(PrivateMailConfig.MailSender, PrivateMailConfig.DisplayName, Encoding.GetEncoding(PrivateMailConfig.MailEncoding))
                 })
                 {
                     PrivateMailMessage.IsBodyHtml = true;
-                    PrivateMailMessage.BodyEncoding = PrivateMailConfig.MailEncoding;
-                    PrivateMailMessage.HeadersEncoding = PrivateMailConfig.MailEncoding;
-                    PrivateMailMessage.SubjectEncoding = PrivateMailConfig.MailEncoding;
+                    PrivateMailMessage.BodyEncoding = Encoding.GetEncoding(PrivateMailConfig.MailEncoding);
+                    PrivateMailMessage.HeadersEncoding = Encoding.GetEncoding(PrivateMailConfig.MailEncoding);
+                    PrivateMailMessage.SubjectEncoding = Encoding.GetEncoding(PrivateMailConfig.TitleEncoding);
                     PrivateMailMessage.BodyTransferEncoding = System.Net.Mime.TransferEncoding.Base64;
                     if (PrivateMailConfig.MailReceivers != null)
                     {
@@ -151,6 +152,7 @@ namespace MailNoticeStd2Lib
         /// </summary>
         /// <param name="title">邮件标题。</param>
         /// <param name="context">邮件正文。</param>
+        /// <returns>该方法无返回值。</returns>
         public async Task SendAsync(string title, string context)
         {
             string strbody = ReplaceText(title, context.Replace("\r\n", "<br>"));
@@ -158,13 +160,13 @@ namespace MailNoticeStd2Lib
             {
                 using (MailMessage PrivateMailMessage = new MailMessage
                 {
-                    From = new MailAddress(PrivateMailConfig.MailSender, PrivateMailConfig.DisplayName, PrivateMailConfig.MailEncoding)
+                    From = new MailAddress(PrivateMailConfig.MailSender, PrivateMailConfig.DisplayName, Encoding.GetEncoding(PrivateMailConfig.MailEncoding))
                 })
                 {
                     PrivateMailMessage.IsBodyHtml = true;
-                    PrivateMailMessage.BodyEncoding = PrivateMailConfig.MailEncoding;
-                    PrivateMailMessage.HeadersEncoding = PrivateMailConfig.MailEncoding;
-                    PrivateMailMessage.SubjectEncoding = PrivateMailConfig.MailEncoding;
+                    PrivateMailMessage.BodyEncoding = Encoding.GetEncoding(PrivateMailConfig.MailEncoding);
+                    PrivateMailMessage.HeadersEncoding = Encoding.GetEncoding(PrivateMailConfig.MailEncoding);
+                    PrivateMailMessage.SubjectEncoding = Encoding.GetEncoding(PrivateMailConfig.TitleEncoding);
                     PrivateMailMessage.BodyTransferEncoding = System.Net.Mime.TransferEncoding.Base64;
                     if (PrivateMailConfig.MailReceivers != null)
                     {
@@ -205,6 +207,7 @@ namespace MailNoticeStd2Lib
         /// <param name="title">邮件标题。</param>
         /// <param name="context">邮件正文。</param>
         /// <param name="attachment">附件列表。</param>
+        /// <returns>该方法无返回值。</returns>
         public async Task SendAsync(string title, string context, string[] attachment)
         {
             string strbody = ReplaceText(title, context.Replace("\r\n", "<br>"));
@@ -213,13 +216,13 @@ namespace MailNoticeStd2Lib
             {
                 using (MailMessage PrivateMailMessage = new MailMessage
                 {
-                    From = new MailAddress(PrivateMailConfig.MailSender, PrivateMailConfig.DisplayName, PrivateMailConfig.MailEncoding)
+                    From = new MailAddress(PrivateMailConfig.MailSender, PrivateMailConfig.DisplayName, Encoding.GetEncoding(PrivateMailConfig.MailEncoding))
                 })
                 {
                     PrivateMailMessage.IsBodyHtml = true;
-                    PrivateMailMessage.BodyEncoding = PrivateMailConfig.MailEncoding;
-                    PrivateMailMessage.HeadersEncoding = PrivateMailConfig.MailEncoding;
-                    PrivateMailMessage.SubjectEncoding = PrivateMailConfig.MailEncoding;
+                    PrivateMailMessage.BodyEncoding = Encoding.GetEncoding(PrivateMailConfig.MailEncoding);
+                    PrivateMailMessage.HeadersEncoding = Encoding.GetEncoding(PrivateMailConfig.MailEncoding);
+                    PrivateMailMessage.SubjectEncoding = Encoding.GetEncoding(PrivateMailConfig.TitleEncoding);
                     PrivateMailMessage.BodyTransferEncoding = System.Net.Mime.TransferEncoding.Base64;
                     if (PrivateMailConfig.MailReceivers != null)
                     {
@@ -263,14 +266,14 @@ namespace MailNoticeStd2Lib
 
         private string ReplaceText(string title, string content)
         {
-            string str = PrivateMailConfig.EmailTemplateFile;
-            str = str.Replace("$MAINTITLE", PrivateMailConfig.TemplateConfig.MainTitle);
-            str = str.Replace("$DISPLAYHEADERINFO", PrivateMailConfig.TemplateConfig.DisplayHeaderInfo);
-            str = str.Replace("$DISPLAYSUBJECT", title);
-            str = str.Replace("$CONTEXT", content);
-            str = str.Replace("$DISPLAYFOOTERINFO", PrivateMailConfig.TemplateConfig.DisplayFooterInfo);
-            str = str.Replace("$COLOR", PrivateMailConfig.TemplateConfig.TitleColor);
-            return str;
+            var template = PrivateMailConfig.EmailTemplateFile;
+            template = template.Replace("$MAINTITLE", PrivateMailConfig.TemplateConfig.MainTitle);
+            template = template.Replace("$DISPLAYHEADERINFO", PrivateMailConfig.TemplateConfig.DisplayHeaderInfo);
+            template = template.Replace("$DISPLAYSUBJECT", title);
+            template = template.Replace("$CONTEXT", content);
+            template = template.Replace("$DISPLAYFOOTERINFO", PrivateMailConfig.TemplateConfig.DisplayFooterInfo);
+            template = template.Replace("$COLOR", PrivateMailConfig.TemplateConfig.TitleColor);
+            return template;
         }
     }
 }

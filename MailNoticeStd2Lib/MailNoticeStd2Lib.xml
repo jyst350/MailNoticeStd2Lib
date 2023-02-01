@@ -11,7 +11,7 @@
         </member>
         <member name="P:MailNoticeStd2Lib.EmailTemplateConfig.TitleColor">
             <summary>
-            标题背景颜色(16进制)。
+            标题背景颜色(16进制,前面不需要加上＃)。
             <para>默认为:4994CE。</para>
             </summary>
         </member>
@@ -71,7 +71,7 @@
         </member>
         <member name="P:MailNoticeStd2Lib.MailConfig.SmtpServerHost">
             <summary>
-            SMTP服务器地址。
+            发信服务器地址。
             </summary>
         </member>
         <member name="P:MailNoticeStd2Lib.MailConfig.SmtpServerPort">
@@ -96,8 +96,14 @@
         <member name="P:MailNoticeStd2Lib.MailConfig.MailEncoding">
              <summary>
             邮件编码格式。
-            <para>默认显示为:UTF8。</para>
+            <para>默认为:UTF-8。</para>
              </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.MailConfig.TitleEncoding">
+            <summary>
+            标题编码格式。
+            <para>默认为:GB2312。</para>
+            </summary>
         </member>
         <member name="P:MailNoticeStd2Lib.MailConfig.EmailTemplateFile">
             <summary>
@@ -120,7 +126,7 @@
         <member name="P:MailNoticeStd2Lib.MailConfig.Priority">
             <summary>
             邮件优先级。
-            <para>默认为:Normal,可选:High,Low,Normal。</para>
+            <para>默认为:Normal,可选:(High,Low,Normal)。</para>
             </summary>
         </member>
         <member name="P:MailNoticeStd2Lib.MailConfig.IsUseDefaultCredentials">
@@ -176,6 +182,7 @@
             </summary>
             <param name="title">邮件标题。</param>
             <param name="context">邮件正文。</param>
+            <returns>该方法无返回值。</returns>
         </member>
         <member name="M:MailNoticeStd2Lib.MailNotice.SendAsync(System.String,System.String,System.String[])">
             <summary>
@@ -184,6 +191,7 @@
             <param name="title">邮件标题。</param>
             <param name="context">邮件正文。</param>
             <param name="attachment">附件列表。</param>
+            <returns>该方法无返回值。</returns>
         </member>
         <member name="T:MailNoticeStd2Lib.MailNoticeEventArgs">
             <summary>
