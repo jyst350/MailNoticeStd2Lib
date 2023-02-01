@@ -4,19 +4,64 @@
         <name>MailNoticeStd2Lib</name>
     </assembly>
     <members>
+        <member name="T:MailNoticeStd2Lib.EmailTemplateConfig">
+            <summary>
+            邮件模板参数配置类。
+            </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.EmailTemplateConfig.TitleColor">
+            <summary>
+            标题背景颜色(16进制)。
+            <para>默认为:4994CE。</para>
+            </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.EmailTemplateConfig.MainTitle">
+            <summary>
+            HTML模板标题。
+            <para>默认为:MailNotice。</para>
+            </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.EmailTemplateConfig.DisplayHeaderInfo">
+            <summary>
+            邮件正文的页头信息。
+            <para>默认显示为:MailNotice。</para>
+            </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.EmailTemplateConfig.DisplayFooterInfo">
+            <summary>
+            邮件正文的页脚信息。
+            <para>默认显示为:Powered by MailNotice。</para>
+            </summary>
+        </member>
         <member name="T:MailNoticeStd2Lib.MailConfig">
             <summary>
-            邮件参数配置类。
+            邮件配置类。
             </summary>
+        </member>
+        <member name="M:MailNoticeStd2Lib.MailConfig.Read(System.String)">
+            <summary>
+            读取根目录下的配置文件,如果不存在,该方法将新建一个基础配置文件。
+            </summary>
+            <param name="fileName">欲写入的文件名。</param>
+            <returns><see cref="T:MailNoticeStd2Lib.MailConfig"/> 对象。</returns>
+        </member>
+        <member name="M:MailNoticeStd2Lib.MailConfig.Write(System.String)">
+            <summary>
+            将配置写入指定文件。
+            </summary>
+            <param name="fileName">欲写入的文件名。</param>
+            <returns></returns>
         </member>
         <member name="P:MailNoticeStd2Lib.MailConfig.MailSender">
             <summary>
             邮件发送者。
+            <para>通常是邮件地址。</para>
             </summary>
         </member>
         <member name="P:MailNoticeStd2Lib.MailConfig.MailSenderPassword">
             <summary>
-            密码。
+            邮件发送者登录密码。
+            <para>目前各大主流邮箱几乎都变更为授权码或应用密码。</para>
             </summary>
         </member>
         <member name="P:MailNoticeStd2Lib.MailConfig.MailReceivers">
@@ -32,48 +77,61 @@
         <member name="P:MailNoticeStd2Lib.MailConfig.SmtpServerPort">
             <summary>
             SMTP服务器端口。
-            <para>默认使用587端口。</para>
+            <para>默认使用25端口。</para>
             </summary>
         </member>
-        <member name="P:MailNoticeStd2Lib.MailConfig.SecurityConnection">
+        <member name="P:MailNoticeStd2Lib.MailConfig.UseTls">
             <summary>
             是否指示使用SSL/TLS进行安全连接。
-            <para>默认为True。</para>
+            <para>默认为false。</para>
+            <para>如果开启，<see cref="P:MailNoticeStd2Lib.MailConfig.SmtpServerPort"/> 参数可能需要更换。</para>
             </summary>
         </member>
         <member name="P:MailNoticeStd2Lib.MailConfig.DisplayName">
             <summary>
-            发信人显示名称。
+            发信人外显名称。
             <para>默认显示为:MailNotice。</para>
-            </summary>
-        </member>
-        <member name="P:MailNoticeStd2Lib.MailConfig.DisplayHeaderInfo">
-            <summary>
-            邮件正文的页头信息。
-            <para>默认显示为:MailNotice。</para>
-            </summary>
-        </member>
-        <member name="P:MailNoticeStd2Lib.MailConfig.DisplayFooterInfo">
-            <summary>
-            邮件正文的页脚信息。
-            <para>默认显示为:Powered by MailNotice。</para>
             </summary>
         </member>
         <member name="P:MailNoticeStd2Lib.MailConfig.MailEncoding">
              <summary>
-            邮件所有上下文的编码格式。
+            邮件编码格式。
             <para>默认显示为:UTF8。</para>
              </summary>
         </member>
         <member name="P:MailNoticeStd2Lib.MailConfig.EmailTemplateFile">
             <summary>
-            邮件模板文件(如未指定,将使用内置模板)。
+            邮件模板文件。
+            <para>如未指定,将使用内置模板。</para>
             </summary>
         </member>
-        <member name="P:MailNoticeStd2Lib.MailConfig.TitleColor">
+        <member name="P:MailNoticeStd2Lib.MailConfig.VerifyCredentials">
             <summary>
-            标题背景颜色(16进制)。
-            <para>默认为:4994CE。</para>
+            是否验证凭据。
+            <para>默认为:true。</para>
+            </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.MailConfig.SendTimeout">
+            <summary>
+            发送超时。
+            <para>默认为:60000(60秒)。</para>
+            </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.MailConfig.Priority">
+            <summary>
+            邮件优先级。
+            <para>默认为:Normal,可选:High,Low,Normal。</para>
+            </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.MailConfig.IsUseDefaultCredentials">
+            <summary>
+            是否随请求一起发送凭据。
+            <para>默认为:false。</para>
+            </summary>
+        </member>
+        <member name="P:MailNoticeStd2Lib.MailConfig.TemplateConfig">
+            <summary>
+            邮件模板参数。
             </summary>
         </member>
         <member name="T:MailNoticeStd2Lib.MailNotice">
@@ -81,14 +139,14 @@
             邮件通知类。
             </summary>
         </member>
-        <member name="E:MailNoticeStd2Lib.MailNotice.SendSuccessed">
+        <member name="E:MailNoticeStd2Lib.MailNotice.OnSucceed">
             <summary>
             当发送成功后引发的事件。
             </summary>
         </member>
-        <member name="E:MailNoticeStd2Lib.MailNotice.SendFailure">
+        <member name="E:MailNoticeStd2Lib.MailNotice.OnFailured">
             <summary>
-            当发送失败后引发的事件。
+            当发送出现故障后引发的事件。
             </summary>
         </member>
         <member name="M:MailNoticeStd2Lib.MailNotice.#ctor(MailNoticeStd2Lib.MailConfig)">
@@ -99,46 +157,42 @@
         </member>
         <member name="M:MailNoticeStd2Lib.MailNotice.Send(System.String,System.String)">
             <summary>
-            发送邮件。
+            发送HTML格式邮件。
             </summary>
-            <param name="title">邮件标题</param>
-            <param name="context">邮件正文</param>
+            <param name="title">邮件标题。</param>
+            <param name="context">邮件正文。</param>
+        </member>
+        <member name="M:MailNoticeStd2Lib.MailNotice.Send(System.String,System.String,System.String[])">
+            <summary>
+            发送带附件的HTML格式邮件。
+            </summary>
+            <param name="title">邮件标题。</param>
+            <param name="context">邮件正文。</param>
+            <param name="attachment">附件列表。</param>
         </member>
         <member name="M:MailNoticeStd2Lib.MailNotice.SendAsync(System.String,System.String)">
             <summary>
-            异步发送邮件。
+            异步发送HTML格式邮件。
             </summary>
-            <param name="title">邮件标题</param>
-            <param name="context">邮件正文</param>
+            <param name="title">邮件标题。</param>
+            <param name="context">邮件正文。</param>
         </member>
-        <member name="M:MailNoticeStd2Lib.MailNotice.Dispose">
+        <member name="M:MailNoticeStd2Lib.MailNotice.SendAsync(System.String,System.String,System.String[])">
             <summary>
-            释放 <see cref="T:MailNoticeStd2Lib.MailNotice"/> 对象。
+            异步发送带附件的HTML格式邮件。
             </summary>
+            <param name="title">邮件标题。</param>
+            <param name="context">邮件正文。</param>
+            <param name="attachment">附件列表。</param>
         </member>
         <member name="T:MailNoticeStd2Lib.MailNoticeEventArgs">
             <summary>
             为 <see cref="T:MailNoticeStd2Lib.MailNotice"/> 提供事件数据的方法。
             </summary>
         </member>
-        <member name="P:MailNoticeStd2Lib.MailNoticeEventArgs.SendResult">
+        <member name="P:MailNoticeStd2Lib.MailNoticeEventArgs.Result">
             <summary>
-            发送结果。
-            </summary>
-        </member>
-        <member name="P:MailNoticeStd2Lib.MailNoticeEventArgs.Title">
-            <summary>
-            邮件标题。
-            </summary>
-        </member>
-        <member name="P:MailNoticeStd2Lib.MailNoticeEventArgs.Context">
-            <summary>
-            邮件正文。
-            </summary>
-        </member>
-        <member name="P:MailNoticeStd2Lib.MailNoticeEventArgs.SendDate">
-            <summary>
-            发送日期/时间。
+            结果。
             </summary>
         </member>
         <member name="T:MailNoticeStd2Lib.Resource">

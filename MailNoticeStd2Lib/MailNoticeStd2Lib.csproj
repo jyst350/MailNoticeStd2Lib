@@ -8,6 +8,10 @@
     <DocumentationFile>D:\Documents\Visual Studio 2019\Projects\MailNoticeStd2Lib\MailNoticeStd2Lib\MailNoticeStd2Lib.xml</DocumentationFile>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\Admin\Desktop\MailNoticeStd2Lib\MailNoticeStd2Lib\MailNoticeStd2Lib.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>

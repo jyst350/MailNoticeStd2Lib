@@ -8,7 +8,7 @@ namespace MailNoticeStd2Lib
     public class MailNoticeEventArgs : EventArgs
     {
         /// <summary>
-        /// 发送结果。
+        /// 结果。
         /// </summary>
         public string Result { get; set; }
     }
