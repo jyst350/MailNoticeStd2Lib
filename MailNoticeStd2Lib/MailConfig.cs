@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Collections;
 using System.ComponentModel;
 using System.IO;
 using System.Text;
@@ -13,7 +14,7 @@ namespace MailNoticeStd2Lib
     public class MailConfig
     {
         /// <summary>
-        /// 读取根目录下的配置文件
+        /// 读取根目录下的配置文件,如果不存在,该方法将新建一个基础配置文件。
         /// </summary>
         /// <returns></returns>
         public MailConfig Read(string fileName)
@@ -28,7 +29,9 @@ namespace MailNoticeStd2Lib
             }
             catch
             {
+                Write(fileName);
                 return new MailConfig();
+                
             }
         }
         /// <summary>
@@ -44,6 +47,9 @@ namespace MailNoticeStd2Lib
                 sw.WriteLine(config);
             }
         }
+
+       
+
         ///<summary>
         ///邮件发送者。
         ///</summary>
@@ -87,31 +93,17 @@ namespace MailNoticeStd2Lib
         ///</summary>
         [JsonProperty]
         [Category("服务器参数"), Description("指示服务器是否使用SSL/TLS进行安全连接\r\n默认:False")]
-        public bool SecurityConnection { get; set; } = false;
+        public bool UseTls { get; set; } = false;
 
         ///<summary>
-        ///发信人显示名称。
+        ///发信人外显名称。
         ///<para>默认显示为:MailNotice。</para>
         ///</summary>
         [JsonProperty]
         [Category("邮件参数"), Description("发信人显示名称\r\n默认:MailNotice")]
         public string DisplayName { get; set; } = "MailNotice";
 
-        ///<summary>
-        ///邮件正文的页头信息。
-        ///<para>默认显示为:MailNotice。</para>
-        ///</summary>
-        [JsonProperty]
-        [Category("邮件参数"), Description("邮件正文的页头信息\r\n默认:MailNotice")]
-        public string DisplayHeaderInfo { get; set; } = "MailNotice";
-
-        ///<summary>
-        ///邮件正文的页脚信息。
-        ///<para>默认显示为:Powered by MailNotice。</para>
-        ///</summary>
-        [JsonProperty]
-        [Category("邮件参数"), Description("邮件正文的页脚信息\r\n默认:Powered by MailNotice")]
-        public string DisplayFooterInfo { get; set; } = "Powered by MailNotice";
+     
 
         /// <summary>
         ///邮件编码格式。
@@ -128,33 +120,13 @@ namespace MailNoticeStd2Lib
         [Category("邮件参数"), Description("邮件模板文件(如未指定,将使用内置模板)。")]
         public string EmailTemplateFile { get; set; } = Resource.EmailTemplate;
 
-        /// <summary>
-        /// 标题背景颜色(16进制)。
-        /// <para>默认为:4994CE。</para>
-        /// </summary>
-        [JsonProperty]
-        [Category("邮件参数"), Description("标题背景颜色(16进制)。")]
-        public string TitleColor { get; set; } = "4994CE";
-
-        /// <summary>
-        /// HTML模板标题。
-        /// <para>默认为:MailNotice。</para>
-        /// </summary>
-        [JsonProperty]
-        [Category("邮件参数"), Description("HTML模板标题。")]
-        public string MainTitle { get; set; } = "MailNotice";
-
-        /// <summary>
-        /// 附件文件列表。
-        /// </summary>
-        [JsonProperty]
-        public string[] AttachmentFileList { get; set; }
-
+    
         /// <summary>
         /// 是否验证凭据。
         /// <para>默认为:true。</para>
         /// </summary>
         [JsonProperty]
+        [Category("邮件参数"), Description("是否验证凭据。\r\n默认为:true。")]
         public bool VerifyCredentials { get; set; } = true;
 
         /// <summary>
@@ -162,20 +134,31 @@ namespace MailNoticeStd2Lib
         /// <para>默认为:60000。</para>
         /// </summary>
         [JsonProperty]
+        [Category("邮件参数"), Description("发送超时。\r\n默认为:60000(60秒)。")]
         public int SendTimeout { get; set; } = 60000;
 
         /// <summary>
         /// 邮件优先级。
-        /// <para>默认为:高。</para>
+        /// <para>默认为:Normal。</para>
         /// </summary>
         [JsonProperty]
+        [Category("邮件参数"), Description("邮件优先级。\r\n默认为:Normal。\r\n可选:High,Low,Normal。")]
         public string Priority { get; set; } = "Normal";
 
         /// <summary>
         /// 是否随请求一起发送凭据。
         /// <para>默认为:false。</para>
         /// </summary>
+        
         [JsonProperty]
+        [Category("邮件参数"), Description("是否随请求一起发送凭据。\r\n默认为:false。")]
         public bool IsUseDefaultCredentials { get; set; } = false;
+        /// <summary>
+        /// 邮件模板参数。
+        /// </summary>
+        [Category("邮件参数"), Description("是否随请求一起发送凭据。\r\n默认为:false。")]
+        public EmailTemplateConfig TemplateConfig { get; set; } =  new EmailTemplateConfig();
+
+  
     }
 }

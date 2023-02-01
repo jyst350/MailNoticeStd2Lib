@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.33214.272
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MailNoticeStd2Lib", "MailNoticeStd2Lib\MailNoticeStd2Lib.csproj", "{99F0A1A9-4247-46B5-AC90-D29F96F181E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailNoticeConsole", "MailNoticeConsole\MailNoticeConsole.csproj", "{1137B82F-2BA8-4BAC-ACB7-748E8A405B95}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{99F0A1A9-4247-46B5-AC90-D29F96F181E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99F0A1A9-4247-46B5-AC90-D29F96F181E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99F0A1A9-4247-46B5-AC90-D29F96F181E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1137B82F-2BA8-4BAC-ACB7-748E8A405B95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1137B82F-2BA8-4BAC-ACB7-748E8A405B95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1137B82F-2BA8-4BAC-ACB7-748E8A405B95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1137B82F-2BA8-4BAC-ACB7-748E8A405B95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
