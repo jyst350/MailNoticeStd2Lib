@@ -8,6 +8,7 @@
 
 ```
 
+
 $DISPLAYHEADERINFO 邮件模板正文的页头信息
 
 $DISPLAYSUBJECT 邮件模板正文标题
@@ -17,6 +18,8 @@ $CONTEXT 邮件模板正文内容
 $DISPLAYFOOTERINFO 邮件模板正文的页脚信息
 
 $COLOR 邮件模板正文的页头信息背景颜色
+
+$MAINTITLE HTML模板标题
 ```
 
 ## 兼容性
